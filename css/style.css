@@ -1,0 +1,111 @@
+
+html, body, h1, h2, h3, p, ul, li {
+margin: 0;
+padding: 0;
+}
+
+/* Apply a background color to the body */
+body {
+background-color: #f0f0f0;
+font-family: 'Lato', sans-serif;
+}
+
+/* Style the header section */
+.container_header {
+background-color: #333;
+color: white;
+text-align: center;
+padding: 10px;
+}
+
+.container_header h3 {
+font-size: 24px;
+}
+
+/* Style the sidebar */
+.container_content_sidebar {
+background-color: #444;
+color: white;
+padding: 10px;
+width: 200px;
+float: left;
+}
+
+.container_content_sidebar_section {
+cursor: pointer;
+padding: 8px;
+border: 1px solid #666;
+margin-bottom: 5px;
+text-align: center;
+transition: background-color 0.3s;
+}
+
+.container_content_sidebar_section:hover {
+background-color: #555;
+}
+
+/* Style the main content */
+.container_content_main {
+background-color: #fff;
+padding: 20px;
+margin-left: 220px;
+margin-top: 10px;
+border: 1px solid #ccc;
+}
+
+.container_content_main h2 {
+font-size: 20px;
+}
+
+/* Style the form elements */
+label {
+font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="radio"],
+input[type="checkbox"],
+select,
+textarea {
+width: 100%;
+padding: 5px;
+margin-bottom: 10px;
+}
+
+/* Style buttons */
+input[type="button"] {
+background-color: #007BFF;
+color: white;
+border: none;
+padding: 10px 20px;
+cursor: pointer;
+}
+
+input[type="button"]:hover {
+background-color: #0056b3;
+}
+
+/* Style the resume section */
+#resume_page {
+display: none;
+background-color: #f0f0f0;
+padding: 20px;
+margin-top: 20px;
+}
+
+/* Style the resume header */
+.header {
+display: flex;
+justify-content: space-between;
+background-color: #007BFF;
+color: white;
+padding: 10px;
+margin-bottom: 20px;
+}
+
+.full-name {
+font-size:4px;
+}

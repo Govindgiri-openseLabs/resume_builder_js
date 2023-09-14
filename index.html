@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="./scss/read_resume.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="container" id='cnp1'>
+        <div class="container_header">
+                      <h1>Resume Builder</h1>
+        </div>
+        <div class="container_content">
+            <div class="container_content_sidebar">
+               <div class="container_content_sidebar_section">
+                 <div class="container_content_sidebar_section_01 section_table" id="basic_sec" onclick="section_show('basic_form')">Basic</div>
+                 <div class="container_content_sidebar_section_02 section_table" id="education_sec" onclick="section_show('education_form')">Education</div>
+                 <div class="container_content_sidebar_section_04 section_table" id="exprience_sec" onclick="section_show('exprience_form')">Experience</div>
+                 <div class="container_content_sidebar_section_03 section_table" id="skill_sec" onclick="section_show('skill_form')">Skills</div>
+                 <div class="container_content_sidebar_section_04 section_table" id="address_sec" onclick="section_show('address_form')">Address</div>
+                 <div class="container_content_sidebar_section_04 section_table" id="contact_sec" onclick="section_show('contact_form')">Contact</div>
+               </div>
+            </div>
+            <div class="container_content_main">
+              <div id="login_user_form">   
+                     <h2>User Login</h2>
+                      <label for="fname">First Name:</label>
+                      <input type="text" name="fname"><br><br>
+                      <label for="email">Email:</label>
+                      <input type="email" name="email" id="user_email" required><br><br>
+                      <label for="password">Password:</label>
+                      <input type="password" name="password" id="user_password" required><br><br>
+                      <br><br>
+                      <input type="button" value="Submit" onclick="edit_resume_data('0')">
+              </div>
+              <div id="container_content_main_forms">
+                <form id="basic_form"name="basic">
+                  <fieldset id="fd"> 
+                    <legend>Basic Information</legend> 
+                     <div>
+                       <h2>Add New Data</h2>
+                        <label for="first_name">First Name:</label>
+                        <input type="text" name="first_name"><br><br>
+                        <label for="middle_name">Middle Name:</label>
+                        <input type="text" name="middle_name"><br><br>
+                        <label for="last_name">Last Name:</label>
+                        <input type="text" name="last_name"><br><br>
+                        <span>Gender:</span>
+                        <label for="male">Male:</label>
+                        <input type="radio" name="gender" value="male">
+                        <label for="female">Female:</label>
+                        <input type="radio"  name="gender" value="female"><br><br>
+                        <!-- <label for="image">Upload Image:</label>
+                        <input type="file" name="user_image"> -->
+                     </div>
+                    <br><br>
+                    <input type="button" value="Save & Next Page" onclick="shift_to_new_page('education_form','basic_form','education_sec')">
+                  </fieldset> 
+                </form>
+                <form id="education_form"name="education">
+                  <fieldset id="fd">
+                    <legend>Education</legend>
+                    <div>
+                      <!-- Add More Education -->
+                      <button type="button" onclick="add_container('education_container')" style="background-color:#7bb1eaf4;">Add Another Education</button>
+                      <input id="education_section_no"type="number"value='0'readonly>
+                      <div id="education_container">
+                        <!-- <label for="educationLevel">Education Level:</label>
+                        <select name="educationLevel" required>
+                            <option value="highschool">High School</option>
+                            <option value="bachelor">Bachelor's Degree</option>
+                            <option value="master">Master's Degree</option>
+                            <option value="doctorate">Doctorate</option>
+                        </select>
+                           <br><br>
+                                 <label for="institutionName">Institution Name:</label>
+                                 <input type="text" name="institutionName" required>
+                                 <br><br>
+                   
+                                <label for="degreeEarned">Degree Earned:</label>
+                                <input type="text" id="degreeEarned" name="degreeEarned" required>
+                                <br><br>
+                        
+                                <label for="fieldOfStudy">Field of Study:</label>
+                                <input type="text" id="fieldOfStudy" name="fieldOfStudy" required>
+                                <br><br>
+                     
+                        <label for="startDate">Start Date:</label>
+                        <input type="date" id="startDate" name="startDate" required>
+                  
+                        <label for="endDate">End Date:</label>
+                        <input type="date" id="endDate" name="endDate" required>
+                        <br><br> -->
+                      </div>
+                    </div>
+                    <br><br>
+                    <!-- Submit Button -->
+                    <input type="button" value="Previous Page" onclick="shift_to_new_page('basic_form','education_form','basic_sec')">
+                    <input type="button" value="Save & Next" onclick="shift_to_new_page('exprience_form','education_form','exprience_sec')">
+                   </fieldset>
+                </form>
+
+
+                <form id="exprience_form" name="Exprience">
+                  <fieldset id="fd">
+                    <legend>Exprience</legend>            
+                    <!-- Add More Experience -->
+                    <button type="button"  onclick="add_container('exprience_container')"style="background-color:#7bb1eaf4">Add Another Experience</button>
+                    <div id="exprience_container">
+                      <!-- add new section -->
+                    </div>
+                    <input type="button" value="Previous Page" onclick="shift_to_new_page('education_form','exprience_form','education_sec')">
+                    <input type="button" value="Save & Next" onclick="shift_to_new_page('skill_form','exprience_form','skill_sec')">
+                  </fieldset>
+                </form>
+                <form id="skill_form" name="Skills">
+                  <fieldset id="fd">
+                    <legend>Skill</legend>
+                    <!-- Skills -->
+                  <label>Skills:</label>
+                  <div>
+                      <input type="checkbox" id="html" name="HTML" value="HTML">
+                      <label for="html">HTML</label>
+                  </div>
+          
+                  <div>
+                      <input type="checkbox" id="css" name="CSS"value="CSS">
+                      <label for="css">CSS</label>
+                  </div>
+          
+                  <div>
+                      <input type="checkbox" id="javascript" name="JavaScript" value="JavaScript">
+                      <label for="javascript">JavaScript</label>
+                  </div>
+          
+                  <div>
+                      <input type="checkbox" id="python" name="Python"value="Python">
+                      <label for="python">Python</label>
+                  </div>
+          
+                  <!-- Add More Skills -->
+                  <button type="button" id="addMore">Add Another Skill</button>
+          
+                  <!-- Submit Button -->
+                  <input id="shift_to_exprience_page"type="button" value="Previous Page" onclick="shift_to_new_page('exprience_form','skill_form','exprience_sec')">
+                  <input id="shift_to_address_page"type="button" value="Save & Next" onclick="shift_to_new_page('address_form','skill_form','address_sec')">
+                  </fieldset id="fd">
+                </form>
+                <form id="address_form" name="Address">
+                  <fieldset id="fd">
+                    <legend>Address</legend> 
+                    <br><br>
+                    <!-- Street Address -->
+                    <label for="streetAddress">Street Address:</label>
+                    <input type="text" id="streetAddress" name="streetAddress" required>
+                    <br><br>
+                    <!-- City -->
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city" required>
+                    <br><br>
+                    <!-- State (Dropdown Menu) -->
+                    <label for="state">State:</label>
+                    <select id="state" name="state">
+                        <option value="select state">Select State</option>
+                        <option value="India">India</option>
+                        <option value="California">California</option>
+                        <option value="Texas">Texas</option>
+                        <!-- Add more state options as needed -->
+                    </select>
+                    <br><br>
+                    <!-- Country (Dropdown Menu) -->
+                    <label for="country">Country:</label>
+                    <select id="country" name="country">
+                      <option>Select Country</option>
+                      <option>United States</option>
+                      <option>Canada</option>
+                      <option>United Kingdom</option>
+                      <!-- Add more country options as needed -->
+                    </select>
+                    <br><br>
+                    <!-- ZIP Code -->
+                    <label for="zipCode">ZIP Code:</label>
+                    <input type="text" id="zipCode" name="zipCode" required>
+                    <br><br>
+                      <!-- Additional Address Details (Textarea) -->
+                      <label for="additionalDetails">Additional Details:</label>
+                      <textarea id="additionalDetails" name="additionalDetails" rows="4" cols="50"></textarea>
+                      <br><br>
+                      <!-- Submit Button -->
+                      <input type="button" value="Previous Page" onclick="shift_to_new_page('exprience_form','address_form','skill_sec')">
+                      <input type="button" value="Save  Next" onclick="shift_to_new_page('contact_form','address_form','contact_sec')">
+                  </fieldset>
+                </form>
+                <form id="contact_form" name="Contact">
+                  <fieldset id="fd">
+                    <legend>Contact</legend>
+                    <br><br>
+                    <!-- Email Address -->
+                    <label for="email">Email Address:</label>
+                    <input type="email"  name="email" required>
+                    <br><br>
+                    <!-- Phone Number -->
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel"  name="phone">
+                    <br><br>
+                    <!-- Message (Textarea) -->
+                    <label for="message">About You:</label>
+                    <textarea  name="message" rows="6" cols="50"></textarea>
+                    <br><br>
+                    <!-- Submit Button -->
+                    <input type="button" value="Previous Page"onclick="shift_to_new_page('address_form','contact_form','address_sec')">
+                    <input type="button" value="Save & Generate" onclick="buid_resume('0')">
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+  <div id="resume_page">
+    <div class="container">
+      <div class="header">
+        <div class="full-name" id="name">
+          <span class="first-name" id="first_name"></span>
+          <span class="first-name" id="middle_name"></span> 
+          <span class="last-name" id="last_name"></span>
+        </div>
+        <div class="contact-info">
+          <span class="email" id="basic_email">Email: </span>
+          <span class="separator"></span>
+          <span class="phone">Phone: </span>
+          <span class="phone-val" id="basic_phone"></span>
+        </div>
+      </div>
+       <div class="details">
+        <div class="section">
+          <div class="section__title">Profile</div>
+          <div class="section__list">
+            <div class="section__list-item" id="resume_profile">
+                <!-- profile secion -->
+            </div>
+    
+          </div>
+        </div>
+        <div class="section">
+          <div class="section__title">Experience</div>
+          <div class="section__list">
+            <div class="section__list-item" id="resume_exprience">
+                <!-- exprience secion -->
+            </div>
+    
+          </div>
+        </div>
+        <div class="section">
+          <div class="section__title">Education</div>
+          <div class="section__list">
+            <div class="section__list-item" id="education_resume">
+              <!-- <div class="left">
+                <div class="name">Sample Institute of technology</div>
+                <div class="addr">San Fr, CA</div>
+                <div class="duration">Jan 2011 - Feb 2015</div>
+              </div>
+              <div class="right">
+                <div class="name">Fr developer</div>
+                <div class="desc">did This and that</div> -->
+              <!-- </div>
+            </div>  -->
+            <!-- <div class="section__list-item">
+              <div class="left">
+                <div class="name">Akount</div>
+                <div class="addr">San Monica, CA</div>
+                <div class="duration">Jan 2011 - Feb 2015</div>
+              </div>
+              <div class="right">
+                <div class="name">Fr developer</div>
+                <div class="desc">did This and that</div>
+              </div>-->
+            </div> 
+          </div>
+      </div>
+
+         <div class="section">
+           <div class="section__title">Skills</div>
+           <div class="skills__item">
+              <div class="skills" id="skill_resume">
+               <!-- <div class="left"><div class="name">
+                 Javascript
+                 </div></div>
+               <div class="right">
+                              <input  id="ck1" type="checkbox" checked/>
+    
+                 <label for="ck1"></label>
+                              <input id="ck2" type="checkbox" checked/>
+    
+                  <label for="ck2"></label>
+                             <input id="ck3" type="checkbox" />
+    
+                  <label for="ck3"></label>
+                               <input id="ck4" type="checkbox" />
+                <label for="ck4"></label>
+                              <input id="ck5" type="checkbox" />
+                  <label for="ck5"></label>
+    
+               </div> -->
+             </div> 
+             
+           </div>
+           <!-- <div class="skills__item">
+               <div class="left"><div class="name">
+                 CSS</div></div>
+               <div class="right">
+                              <input  id="ck1" type="checkbox" checked/>
+    
+                 <label for="ck1"></label>
+                              <input id="ck2" type="checkbox" checked/>
+    
+                  <label for="ck2"></label>
+                             <input id="ck3" type="checkbox" />
+    
+                  <label for="ck3"></label>
+                               <input id="ck4" type="checkbox" />
+                <label for="ck4"></label>
+                              <input id="ck5" type="checkbox" />
+                  <label for="ck5"></label>
+    
+               </div>
+             </div> -->
+             
+           </div>
+         <div class="section"> </div>
+         </div>
+      </div>
+    </div>   
+  </div>
+    <script src="./js/index.js"></script>
+</body>
+</html>
