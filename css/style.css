@@ -98,14 +98,15 @@ margin-top: 20px;
 
 /* Style the resume header */
 .header {
+color:grey;    
 display: flex;
 justify-content: space-between;
-background-color: #007BFF;
-color: white;
+background-color: #dfe2e650;
 padding: 10px;
 margin-bottom: 20px;
 }
 
 .full-name {
 font-size:4px;
+color: grey;
 }

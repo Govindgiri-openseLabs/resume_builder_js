@@ -1,12 +1,12 @@
-// let params=window.location.search;
-// params=new URLSearchParams(params);
-// let email = params.get('email')
-// console.log("ema,il", email );  
-// load_resume()
-// function load_resume()
-//  {
-//      let data=localStorage.getItem(email);
-//  }
+let params=window.location.search;
+params=new URLSearchParams(params);
+let email = params.get('email')
+console.log("ema,il", email );  
+if(email)
+ {
+    resume_rendor(email)
+ }
+
 const education_section = `
 <div style="border:1px black solid;margin:5px;padding:10px">
 <h2>Education Level</h2>
@@ -81,6 +81,7 @@ let current_page=document.getElementById(current_page_id);
 let new_page=document.getElementById(new_page_id);
 current_page.style.display="none";
 new_page.style.display="block"
+ buid_resume('incomplete');
 }
 
 
@@ -104,8 +105,9 @@ parent.appendChild(child);
 } 
 
 
-function buid_resume()
-{  //let all_user=localStorage.getItem('users')||[];
+function buid_resume(id)
+{ let all_user=JSON.parse(localStorage.getItem('users'));
+  if(!all_user) all_user=[];
 let user_email=document.getElementById('user_email').value;
 var forms = document.forms;
 let user_data={};
@@ -154,15 +156,34 @@ for (var j = 0; j < elements.length; j++) {
    }
 }
 }
-//console.log(form)
-localStorage.setItem(user_email,JSON.stringify(user_data));
-localStorage.setItem("form",JSON.stringify(form));
-// open resume in new tab
-document.getElementById('cnp1').style.display="none";
-document.getElementById('resume_page').style.display="block";
+if(all_user.length)
+ {  console.log('hhh',all_user);
+    let flag=0;
+   for(let i=0;i<all_user.length;i++)
+    {
+        if(all_user[i][user_email])
+         {  all_user[i][user_email]=user_data; 
+            flag=1;
+         }
+    }
+    if(!flag) 
+     {  let tmp={}; tmp[user_email]=user_data;
+        all_user.push(tmp);
+     } 
+ }
+ else
+ {    let tmp={}; tmp[user_email]=user_data;
+       all_user.push(tmp);
+ }
+
+localStorage.setItem('users',JSON.stringify(all_user));
+
+//localStorage.setItem("form",JSON.stringify(form));
 // render data to resume
 
+if(id==='contact_form')
 resume_rendor(user_email);
+else return;
 
 
 }
@@ -170,6 +191,7 @@ resume_rendor(user_email);
 
 function edit_resume_data()
 {  
+
 // edit data in form
 let user=document.getElementById('user_email').value;
 if(!user){
@@ -177,18 +199,18 @@ alert('Email Required'); return;
 }
 // color change
 document.getElementById('basic_sec').style.backgroundColor="green"
-let check_user=JSON.parse(localStorage.getItem(user));
-//  let all_user=JSON.parse(localStorage.getItem('user'));
-//  if(all_user)
-//   {
-//      for(let i=0;i<all_user.length;i++)
-//       {
-//          if(all_user[i][user])
-//           {
-//              check_user=all_user[i][user];
-//           }
-//       }
-//   } 
+let check_user=0;
+ let all_user=JSON.parse(localStorage.getItem('users'));
+ if(all_user)
+  {
+     for(let i=0;i<all_user.length;i++)
+      {
+         if(all_user[i][user])
+          {
+             check_user=all_user[i][user];
+          }
+      }
+  } 
 
 
 //if user found
@@ -307,8 +329,28 @@ start_input.style.display="block";
 }
 
 function resume_rendor(user_email)
-{
-let user_data=JSON.parse(localStorage.getItem(user_email));
+{ // open resume in new tab
+  document.getElementById('cnp1').style.display="none";
+  document.getElementById('resume_page').style.display="block";
+  // redor data
+  let user_data=0;
+  console.log('oooooo',user_email)
+  let all_user=JSON.parse(localStorage.getItem('users'));
+  if(all_user)
+   {
+     for(let i=0;i<all_user.length;i++)
+      {
+         user_data=all_user[i][user_email];       
+      }
+   }
+   console.log('ppppp',user_data)
+  if(!user_data) { alert('invalid user data'); 
+         document.getElementById('cnp1').style.display="block";
+         document.getElementById('resume_page').style.display="none";
+         return;
+    } 
+//let user_data=JSON.parse(localStorage.getItem(user_email));
+
 // console.log(innerHTML=user_data.basic.last_name.value)
 document.getElementById('first_name').innerHTML=user_data?.basic?.first_name?.value||"";
 document.getElementById('middle_name').innerHTML=user_data?.basic?.middle_name?.value||"";
@@ -373,3 +415,15 @@ skill_parent.appendChild(skill_child);
 })
 
 }
+
+function edit_by_button()
+ {   document.getElementById('resume_page').style.display='none';
+     document.getElementById('cnp1').style.display="block";
+     document.getElementById('basic_form').style.display="block";
+     document.getElementById('contact_form').style.display="none";
+ }
+
+function add_by_button()
+ {
+     location.reload();
+ }
