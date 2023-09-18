@@ -96,7 +96,6 @@ parent.appendChild(child);
 }
 else
 {
-let num=document.getElementById('education_section_no').value++;
 let parent=document.getElementById('education_container');
 let child=document.createElement('div');
 child.innerHTML=education_section;
@@ -191,7 +190,6 @@ else return;
 
 function edit_resume_data()
 {  
-
 // edit data in form
 let user=document.getElementById('user_email').value;
 if(!user){
@@ -227,7 +225,7 @@ for (let i = 0; i < forms.length; i++) {
  if(form.name==='education')
    {   let number_of_level=check_user[form.name].length;
      for(let i=0;i<number_of_level;i++)
-      { document.getElementById('education_section_no').value++;
+      { 
         let parent=document.getElementById('education_container');
         let child=document.createElement('div');
         child.innerHTML=`<div style="border:1px black solid;padding:15px;margin:5px">
@@ -339,7 +337,7 @@ function resume_rendor(user_email)
   if(all_user)
    {
      for(let i=0;i<all_user.length;i++)
-      {
+      {  if(all_user[i][user_email])
          user_data=all_user[i][user_email];       
       }
    }
@@ -427,3 +425,4 @@ function add_by_button()
  {
      location.reload();
  }
+
